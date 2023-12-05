@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RegisterButtonFragment.OnRegisterButtonClickListener{
 
     private EditText user_name;
     private EditText password;
@@ -30,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
+        RegisterButtonFragment refreshButtonFragment = new RegisterButtonFragment();
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, refreshButtonFragment, "RefreshButtonFragment");
         transaction.commit();
 
         login_btn.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 password.setText("");
 
                 if (databaseHelper.checkUser(userName, passWord)) {
+                    Intent goTodoList = new Intent(MainActivity.this, TodoListActivity.class);
+                    goTodoList.putExtra("USERNAME", userName);
+                    startActivity(goTodoList);
                 } else {
                     Toast.makeText(MainActivity.this, "Username or password wrong. Please enter again.", Toast.LENGTH_SHORT).show();
                 }
@@ -48,5 +54,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRegisterButtonClick() {
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
 }
