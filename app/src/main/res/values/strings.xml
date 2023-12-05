@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">TaskManage</string>
-    <string name="welcome_message">Welcome to TaskManage</string>
+    <string name="welcome_message">Welcome to TaskMaster</string>
     <string name="enter_username_message">Enter your user name:</string>
     <string name="enter_password_message">Enter your password:</string>
     <string name="login_button">LOGIN</string>
-    <string name="register_hint">Have no account? </string>
-    <string name="register_button">REGISTER</string>
+    <string name="register_hint">Not registered? </string>
+    <string name="register_button">REGISTER NOW!</string>
     <string name="enter_new_password">Enter a new password:</string>
     <string name="reenter_new_password">Enter the new password again:</string>
     <string name="type_hint">Type Here</string>

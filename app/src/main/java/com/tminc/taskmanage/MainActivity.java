@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
                     goTodoList.putExtra("USERNAME", userName);
                     startActivity(goTodoList);
                 } else {
-                    Toast.makeText(MainActivity.this, "Username or password wrong. Please enter again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Invalid Email or password. Please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
