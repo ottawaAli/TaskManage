@@ -20,12 +20,17 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
     private EditText user_name;
     private EditText password;
     private DatabaseHelper databaseHelper;
+    private ImageView passwordVisibilityIconMain; // Add this line
+    private boolean isPasswordVisible = false;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        passwordVisibilityIconMain = findViewById(R.id.password_visibility_icon_main);
+
 
         Button login_btn = findViewById(R.id.login_button);
         user_name = findViewById(R.id.user_name);
@@ -55,6 +60,14 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
                 }
             }
         });
+
+        // Set OnClickListener for the password visibility toggle icon in MainActivity
+        passwordVisibilityIconMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePasswordVisibilityMain();
+            }
+        });
     }
 
     @Override
@@ -62,5 +75,17 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
         Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
-
+    // Add this method to toggle password visibility in MainActivity
+    private void togglePasswordVisibilityMain() {
+        if (!isPasswordVisible) {
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            passwordVisibilityIconMain.setImageResource(R.drawable.ic_visibility_on);
+            isPasswordVisible = true;
+        } else {
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordVisibilityIconMain.setImageResource(R.drawable.ic_visibility_off);
+            isPasswordVisible = false;
+        }
+        password.setSelection(password.getText().length());
+    }
 }
