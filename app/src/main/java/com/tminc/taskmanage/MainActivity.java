@@ -5,19 +5,22 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 
-public class MainActivity extends AppCompatActivity implements RegisterButtonFragment.OnRegisterButtonClickListener{
+public class MainActivity extends AppCompatActivity implements RegisterButtonFragment.OnRegisterButtonClickListener {
 
     private EditText user_name;
     private EditText password;
     private DatabaseHelper databaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,4 +62,5 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
         Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
+
 }

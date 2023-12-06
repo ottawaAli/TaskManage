@@ -12,15 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskManage"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@drawable/ic_visibility_on" />
 
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".TodoListActivity"
+            android:exported="false"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
-            android:exported="false" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
