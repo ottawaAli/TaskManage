@@ -53,6 +53,13 @@
         android:contentDescription="Toggle Password Visibility"/>
     </RelativeLayout>
 
+
+    <CheckBox
+        android:id="@+id/rememberuser_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember my user name" />
+
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"

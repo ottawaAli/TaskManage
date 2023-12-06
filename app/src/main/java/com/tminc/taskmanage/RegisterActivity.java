@@ -1,6 +1,5 @@
 package com.tminc.taskmanage;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -141,5 +140,4 @@ public class RegisterActivity extends AppCompatActivity {
         // 移动光标到末尾
         re_password.setSelection(re_password.getText().length());
     }
-
 }
