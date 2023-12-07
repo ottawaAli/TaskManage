@@ -2,6 +2,7 @@ package com.tminc.taskmanage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -86,12 +87,37 @@ public class TodoListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_exit) {
+        if (item.getItemId() == R.id.menu_help) {
+            showHelpDialog();
+            return true;
+        } else if (item.getItemId() == R.id.menu_exit) {
             finish();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Help")
+                .setMessage("Final Project of Wei and Yao\n" +
+                        "Introduction Welcome to the TaskManage APP! This application provides a convenient way to organize and manage your todo tasks efficiently.\n" +
+                        "Features\n" +
+                        "Registration Create your account by registering with a unique username and password.\n" +
+                        "Login Access your account securely by logging in with your registered credentials.Enable to remember your last login username for added convenience.\n" +
+                        "Add Normal Todo Easily add regular todo items to your list, keeping your tasks organized.\n" +
+                        "Add Urgent Todo Highlight urgent tasks by adding them to your todo list with a red background colour.\n" +
+                        "Task Management Long-press on a todo item to delete the task, or to mark it as completed.\n" +
+                        "User-Friendly Menu Access additional functionalities through the menu, including the option to log out and exit the application.\n" +
+                        "Enjoy the Convenience! If you have any questions or feedback, feel free to reach out our email: huan0282@algonquinlive.com")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void addTodoItem() {
