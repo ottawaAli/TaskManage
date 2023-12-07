@@ -16,4 +16,7 @@
     <string name="delete_button_name">Delete</string>
     <string name="done_button_name">Completed</string>
     <string name="exit_button_name">Quit</string>
+    <string name="progress_text">Progress: %d%%</string>
+    <string name="done_count_text">已完成 %d 件事</string>
+
 </resources>

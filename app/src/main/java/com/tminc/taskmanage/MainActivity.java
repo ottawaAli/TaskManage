@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +30,12 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         passwordVisibilityIconMain = findViewById(R.id.password_visibility_icon_main);
-
 
         Button login_btn = findViewById(R.id.login_button);
         user_name = findViewById(R.id.user_name);
@@ -118,4 +119,5 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
         }
         password.setSelection(password.getText().length());
     }
+
 }

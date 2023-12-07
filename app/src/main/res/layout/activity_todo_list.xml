@@ -7,6 +7,32 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/progressText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Progress Bar"
+        android:textSize="20dp"
+        android:background="#D3D3D3"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:max="100"
+        android:progress="0"
+        android:progressTint="@android:color/holo_blue_light"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/todoTextView"/>
+
+    <TextView
         android:id="@+id/todoTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,7 +57,7 @@
         android:id="@+id/doneTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Done List"
+        android:text=""
         android:textSize="20dp"
         android:background="#D3D3D3"
         android:paddingStart="20dp"

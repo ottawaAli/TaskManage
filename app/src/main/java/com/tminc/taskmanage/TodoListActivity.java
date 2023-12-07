@@ -10,10 +10,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import java.util.List;
 
 import android.app.AlertDialog;
+import android.widget.TextView;
 
 public class TodoListActivity extends AppCompatActivity {
     private List<TodoItem> toDoList;
@@ -23,6 +25,9 @@ public class TodoListActivity extends AppCompatActivity {
     private EditText editText;
     private String username;
     private Switch switchUrgent;
+
+    private ProgressBar progressBar;
+    private TextView progressText;
 
     private DatabaseHelper databaseHelper;
 
@@ -38,6 +43,12 @@ public class TodoListActivity extends AppCompatActivity {
 
         toDoList = databaseHelper.getTodoList(username);
         doneList = databaseHelper.getDoneList(username);
+
+
+        progressBar = findViewById(R.id.progressBar);
+        progressText = findViewById(R.id.progressText);
+
+        updateProgress(); // Update progress initially
 
         editText = findViewById(R.id.inputEditText);
         switchUrgent = findViewById(R.id.urgentSwitch);
@@ -93,6 +104,8 @@ public class TodoListActivity extends AppCompatActivity {
         editText.setText("");
         switchUrgent.setChecked(false);
         todoAdapter.notifyDataSetChanged();
+
+        updateProgress();
     }
 
     private void handleTodoItem(int position) {
@@ -113,8 +126,35 @@ public class TodoListActivity extends AppCompatActivity {
 
                     todoAdapter.notifyDataSetChanged();
                     doneAdapter.notifyDataSetChanged();
+                    updateProgress();
+
                 })
                 .create()
                 .show();
     }
+
+
+    private void updateProgress() {
+        int totalItemCount = getTotalItemCount();
+        int doneItemCount = doneList.size();
+
+        if (totalItemCount > 0) {
+            int progress = (int) ((doneItemCount / (float) totalItemCount) * 100);
+            progressBar.setProgress(progress);
+            progressText.setText(getString(R.string.progress_text, progress));
+        } else {
+            progressBar.setProgress(0);
+            progressText.setText(getString(R.string.progress_text, 0));
+        }
+
+        TextView todoCountTextView = findViewById(R.id.todoTextView);
+        todoCountTextView.setText("Done List"+ " (" + (totalItemCount-doneItemCount) + ")");
+        TextView doneCountTextView = findViewById(R.id.doneTextView);
+        doneCountTextView.setText("Done List"+ " (" + doneItemCount + ")");
+    }
+
+    private int getTotalItemCount() {
+        return toDoList.size() + doneList.size();
+    }
+
 }
