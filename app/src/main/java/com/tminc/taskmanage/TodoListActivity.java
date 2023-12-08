@@ -101,16 +101,14 @@ public class TodoListActivity extends AppCompatActivity {
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Help")
-                .setMessage("Final Project of Wei and Yao\n" +
-                        "Introduction Welcome to the TaskManage APP! This application provides a convenient way to organize and manage your todo tasks efficiently.\n" +
+                .setMessage( "\n" +
                         "Features\n" +
-                        "Registration Create your account by registering with a unique username and password.\n" +
-                        "Login Access your account securely by logging in with your registered credentials.Enable to remember your last login username for added convenience.\n" +
-                        "Add Normal Todo Easily add regular todo items to your list, keeping your tasks organized.\n" +
-                        "Add Urgent Todo Highlight urgent tasks by adding them to your todo list with a red background colour.\n" +
-                        "Task Management Long-press on a todo item to delete the task, or to mark it as completed.\n" +
-                        "User-Friendly Menu Access additional functionalities through the menu, including the option to log out and exit the application.\n" +
-                        "Enjoy the Convenience! If you have any questions or feedback, feel free to reach out our email: huan0282@algonquinlive.com")
+                        "1. Registration：Create your account with a unique username and password.\n" +
+                        "2. Login：Enable to remember your last login username for convenience.\n" +
+                        "3. Add Normal Todo Easily.\n" +
+                        "4. Add Urgent Todo Highlight urgent tasks.\n" +
+                        "5. Long-press on a todo item to delete，mark it as completed or quit.\n" +"\n" +
+                        "If you have any questions or feedback, feel free to email: huan0282@algonquinlive.com")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
@@ -143,6 +141,9 @@ public class TodoListActivity extends AppCompatActivity {
                     databaseHelper.removeTodo(toDoList.get(position));
                     toDoList.remove(position);
                     todoAdapter.notifyDataSetChanged();
+
+                    updateProgress();
+
                 })
                 .setNeutralButton(R.string.done_button_name, (dialog, id) -> {
                     databaseHelper.completeTodo(toDoList.get(position));
