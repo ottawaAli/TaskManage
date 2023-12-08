@@ -107,7 +107,8 @@ public class TodoListActivity extends AppCompatActivity {
                         "2. Login：Enable to remember your last login username for convenience.\n" +
                         "3. Add Normal Todo Easily.\n" +
                         "4. Add Urgent Todo Highlight urgent tasks.\n" +
-                        "5. Long-press on a todo item to delete，mark it as completed or quit.\n" +"\n" +
+                        "5. Long-press on a todo item to delete，mark it as completed or quit.\n" +
+                        "6. The progress indicator reflects the percentage of completed tasks.\n" +"\n" +
                         "If you have any questions or feedback, feel free to email: huan0282@algonquinlive.com")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -175,7 +176,7 @@ public class TodoListActivity extends AppCompatActivity {
         }
 
         TextView todoCountTextView = findViewById(R.id.todoTextView);
-        todoCountTextView.setText("Done List"+ " (" + (totalItemCount-doneItemCount) + ")");
+        todoCountTextView.setText("Todo List"+ " (" + (totalItemCount-doneItemCount) + ")");
         TextView doneCountTextView = findViewById(R.id.doneTextView);
         doneCountTextView.setText("Done List"+ " (" + doneItemCount + ")");
     }
