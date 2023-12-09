@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
     private boolean isPasswordVisible = false;
     private CheckBox rememberUserCheckbox;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements RegisterButtonFra
                 rememberUserCheckbox.setChecked(true);
             }
         }
-
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override

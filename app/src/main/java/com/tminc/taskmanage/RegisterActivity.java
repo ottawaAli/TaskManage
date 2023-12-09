@@ -16,12 +16,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText password;
     private EditText re_password;
     private DatabaseHelper databaseHelper;
-    private ImageView passwordVisibilityIcon; // 声明为类的成员变量
+    private ImageView passwordVisibilityIcon;
     private ImageView passwordVisibilityIcon2;
     private boolean isPasswordVisible = false;
     private boolean isRePasswordVisible = false;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +38,10 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.new_password);
         re_password = findViewById(R.id.reenter_password);
 
-        // 设置密码输入框的初始输入类型为密码
         if (password != null) {
             password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-            // 添加显示/隐藏密码功能
+            // click to hide or view the password
             passwordVisibilityIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -59,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (re_password != null) {
             re_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-            // 添加显示/隐藏密码功能
             passwordVisibilityIcon2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,41 +99,33 @@ public class RegisterActivity extends AppCompatActivity {
     // 切换密码可见性
     private void togglePasswordVisibility() {
         if (!isPasswordVisible) {
-            // 密码模式，切换为可见文本
+            // change to view password
             password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             passwordVisibilityIcon.setImageResource(R.drawable.ic_visibility_on);
             isPasswordVisible = true;
         } else {
-            // 可见文本模式，切换为密码
+            // change to hide password
             password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             passwordVisibilityIcon.setImageResource(R.drawable.ic_visibility_off);
             isPasswordVisible = false;
         }
 
-        // 重新获取焦点
         password.requestFocus();
-
-        // 移动光标到末尾
         password.setSelection(password.getText().length());
     }
 
     private void togglePassword2Visibility() {
         if (!isRePasswordVisible) {
-            // 密码模式，切换为可见文本
             re_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             passwordVisibilityIcon2.setImageResource(R.drawable.ic_visibility_on);
             isRePasswordVisible = true;
         } else {
-            // 可见文本模式，切换为密码
             re_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             passwordVisibilityIcon2.setImageResource(R.drawable.ic_visibility_off);
             isRePasswordVisible = false;
         }
 
-        // 重新获取焦点
         re_password.requestFocus();
-
-        // 移动光标到末尾
         re_password.setSelection(re_password.getText().length());
     }
 }
