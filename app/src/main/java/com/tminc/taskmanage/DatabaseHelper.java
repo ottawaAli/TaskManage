@@ -11,13 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    // Database version and name constants
     private static final String DATABASE_NAME = "todoDB";
     private static final int DATABASE_VERSION = 4;
 
+    // Constructor
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // onCreate is called to create the database tables when the database is first created
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableUsers = "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)";
@@ -26,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTableTodos);
     }
 
+    // onUpgrade is called when the database needs to be upgraded
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS users");
@@ -33,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Save a new user to the database
     public void saveUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -41,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("users", null, values);
     }
 
+    // Check if a user exists with the given username and password
     public Boolean checkUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
@@ -55,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    // Check if the given username already exists in the database
     public Boolean checkUserName(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM users WHERE username = ?";
@@ -68,6 +76,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return false;
     }
+
+    // Save a new todo item to the database
     public void saveTodo(TodoItem todoItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -80,6 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("todos", null, values);
     }
 
+    // Remove a todo item from the database
     public void removeTodo(TodoItem todoItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         String whereClause = "username = ? AND todo = ?";
@@ -88,6 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete("todos", whereClause, whereArgs);
     }
 
+    // Mark a todo item as complete
     public void completeTodo(TodoItem todoItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -127,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return todoList;
     }
 
+    // Retrieve a list of TODO items for a specific user
     public List<TodoItem> getDoneList(String username) {
         List<TodoItem> doneList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();

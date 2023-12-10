@@ -37,15 +37,17 @@ public class TodoListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list);
 
+        // Get the username from the previous activity
         Intent fromLogin = getIntent();
         username = fromLogin.getStringExtra("USERNAME");
 
+        // Initialize database helper and get todo and done lists
         databaseHelper = new DatabaseHelper(this);
 
         toDoList = databaseHelper.getTodoList(username);
         doneList = databaseHelper.getDoneList(username);
 
-
+        // Initialize UI elements
         progressBar = findViewById(R.id.progressBar);
         progressText = findViewById(R.id.progressText);
 
@@ -57,6 +59,7 @@ public class TodoListActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(getString(R.string.app_name) + "  (Hi," + username + ")");
 
+        // Set up the list views and adapters
         ListView todoListView = findViewById(R.id.todoListView);
         todoAdapter = new TodoAdapter(this, toDoList);
         todoListView.setAdapter(todoAdapter);
@@ -65,13 +68,16 @@ public class TodoListActivity extends AppCompatActivity {
         doneAdapter = new DoneAdapter(this, doneList);
         doneListView.setAdapter(doneAdapter);
 
+        // Set up the fragment for displaying done items
         DoneFragment doneFragment = new DoneFragment(username);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.doneFragmentContainer, doneFragment)
                 .commit();
 
+        // Add new todo item on button click
         buttonAdd.setOnClickListener(v -> addTodoItem());
 
+        // Handle long press on todo items for additional actions
         todoListView.setOnItemLongClickListener((adapterView, view, position, l) -> {
             handleTodoItem(position);
             return true;
